@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-nodejs
+  labels:
+    app: web-nodejs
+  namespace: octank
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web-nodejs
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: web-nodejs
+    spec:
+      containers:
+        - image: 889393155762.dkr.ecr.us-west-2.amazonaws.com/octankwebapp/web-nodejs:latest
+          imagePullPolicy: Always
+          name: web-nodejs
+          ports:
+            - containerPort: 8080
+      imagePullSecrets:
+         - name: catalog-ecr-secret
