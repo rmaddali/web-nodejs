@@ -118,7 +118,7 @@ angular.module("app")
 			   method: 'POST',
 			   url: baseUrl + '/' + cartId + '/' + product.itemId + '/' + quantity
 		   }).then(function(resp) {
-			alert("cart sss url="+resp.data);
+			
 			    cart = resp.data;
 			   	deferred.resolve(resp.data);
 		   }, function(err) {
