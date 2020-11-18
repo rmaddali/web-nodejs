@@ -27,7 +27,7 @@ pipeline {
           steps{
               script {
                   
-          kubernetesDeploy(configs: "kubernetes/deployment.yaml", kubeconfigId: "k8-cred")
+          kubernetesDeploy(configs: "kubernetes/deployment.yaml", kubeconfigId: "k8-cred",deleteResource: true)
             
           }
           }
