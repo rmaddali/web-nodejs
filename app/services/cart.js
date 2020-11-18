@@ -8,7 +8,7 @@ angular.module("app")
 		baseUrl = (COOLSTORE_CONFIG.SECURE_API_ENDPOINT.startsWith("https://") ? COOLSTORE_CONFIG.SECURE_API_ENDPOINT : "https://" + COOLSTORE_CONFIG.SECURE_API_ENDPOINT + '.' + $location.host().replace(/^.*?\.(.*)/g,"$1")) + '/api/cart';
 	} else {
 		baseUrl = "http://ac1d6313254d94a23ae18c602f8d4e73-190445424.us-west-2.elb.amazonaws.com"+ '/cart';
-		alert("carturl"+baseUrl);
+		
 	}
 
 	factory.checkout = function() {
@@ -26,7 +26,7 @@ angular.module("app")
 	};
 
 	factory.reset = function() {
-		alert("reset calledrl");
+		
 		cart = {
 			shoppingCartItemList: []
 		};
@@ -53,7 +53,7 @@ angular.module("app")
 		if (!tmpId && authId) {
 
 			cartId = authId;
-			alert("cart id is authid"+cartId);
+			
 		}
 
 		if (!tmpId && !authId) {
@@ -96,7 +96,7 @@ angular.module("app")
 	};
 
 	factory.setCart = function(id) {
-		alert("set cart");
+		
 		var deferred = $q.defer();
 		$http({
 			method: 'POST',
@@ -113,7 +113,7 @@ angular.module("app")
 
 	factory.addToCart = function(product, quantity) {
 		var deferred = $q.defer();
-		alert("carturl====="+baseUrl+"cartId="+cartId+"quant="+quantity);
+		
 		$http({
 			   method: 'POST',
 			   url: baseUrl + '/' + cartId + '/' + product.itemId + '/' + quantity
@@ -124,7 +124,7 @@ angular.module("app")
 		   }, function(err) {
 			   	deferred.reject(err);
 		   });
-		alert("cart sss url="+baseUrl);
+		
 		return deferred.promise;
 
 	};
