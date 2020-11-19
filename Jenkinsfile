@@ -18,7 +18,7 @@ pipeline {
     stage('K8s Get Pods') {
           steps{
             sh 'ls'
-            sh 'whoami'
+            sh 'sudo kubectl delete deployment web-nodejs -n octank'
         sh 'sudo kubectl get pods'
           }
           
@@ -27,7 +27,7 @@ pipeline {
           steps{
               script {
                   
-          kubernetesDeploy(configs: "kubernetes/deployment.yaml", kubeconfigId: "k8-cred",deleteResource: true)
+          kubernetesDeploy(configs: "kubernetes/deployment.yaml", kubeconfigId: "k8-cred")
             
           }
           }
