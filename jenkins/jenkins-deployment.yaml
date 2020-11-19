@@ -40,4 +40,4 @@ spec:
       volumes:
         - name: jenkins-home
           persistentVolumeClaim:
-            claimName: eks-test-jenkins-pv-claim
+            claimName: jenkins-pv-claim

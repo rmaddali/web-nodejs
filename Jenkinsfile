@@ -1,25 +1,20 @@
 pipeline {
-  environment {
-    registry = "gustavoapolinario/docker-test"
-    registryCredential = 'dockerhub'
-    dockerImage = ''
-  }
   agent any
-  stages {
-    stage('Cloning Git') {
-      steps {
-        git 'https://github.com/rmaddali/web-nodejs.git'
-      }
-    }
-    stage('Building image') {
 
-    }
-    stage('Deploy Image') {
-
-
-    }
-    stage('Remove Unused docker image') {
-
-
+  tools {
+    jdk 'jdk8'
+    maven 'apache-maven36'
   }
-}
+
+ stages {
+  stage('Deploy to K8s') {
+        steps {
+          withKubeConfig([credentialsId: 'kubernetes-config']) {
+            sh 'curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"'
+            sh 'chmod u+x ./kubectl'
+            sh './kubectl version'
+                                                               }
+               }
+                       }
+         }
+  }
