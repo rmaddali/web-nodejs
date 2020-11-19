@@ -11,6 +11,7 @@ pipeline {
                  sh 'echo Scanning image ---'
 
              }
+             }
      stage('Build Image') {
           steps{
         sh 'sudo docker build -t octankwebapp/web-nodejs --network host .'
