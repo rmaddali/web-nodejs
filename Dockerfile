@@ -10,11 +10,13 @@ COPY package*.json ./
 
 RUN npm install npm
 RUN npm install --global bower
+
 # If you are building your code for production
 # RUN npm ci --only=production
 
 # Bundle app source
 COPY . .
+RUN bower install --allow-root
 
 EXPOSE 8080
 CMD [ "node", "server.js" ]
